@@ -36,7 +36,7 @@ class CreateTodo extends React.Component {
     render() {
         return (
             <form onSubmit={this.submitHandler}>
-                <TextField required value={this.state.todo} name="title" label="Название" onChange={ this.changeInputHandler}/>
+                <TextField required value={this.state.todo} name="title" label="Название" inputProps={{maxLength: 10}} onChange={ this.changeInputHandler}/>
                 <Button size="small" className={'submit-button'}
                         variant="contained" color="primary" type="submit"> Создать
                 </Button>
@@ -49,8 +49,4 @@ const mapDispatchToProps = {
     createTodo
 }
 
-const mapStateToProps = state => ({
-    alert: state.todo
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateTodo)
+export default connect(null, mapDispatchToProps)(CreateTodo)

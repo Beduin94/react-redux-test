@@ -3,15 +3,22 @@ import {List, ListItemText, Checkbox, ListItemIcon, ListItem} from "@material-ui
 import connect from "react-redux/lib/connect/connect";
 import {checkedTodo} from "../redux/actions";
 
-const TodosList = ({todos, checkedTodo}) => {
-
+const TodosList = ({todos, filter, checkedTodo}) => {
     const handleToggle = (todo) => () => {
         todo.checked = !todo.checked;
         checkedTodo(todo);
     }
     return (
         <List>
-            {todos.map((todo) => {
+            {todos.filter(todo => {
+                console.log(filter);
+                if(filter ==='all')
+                    return todo
+                else if (filter ==='checked')
+                    return todo.checked === true
+                else if (filter ==='unchecked')
+                    return todo.checked === false
+            }).map((todo) => {
                 const labelId = `checkbox-list-label-${todo.id}`;
 
                 return (
@@ -39,7 +46,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
     return {
-        todos: state.todos.todos
+        todos: state.todos.todos,
+        filter: state.filter.filter
     }
 }
 
