@@ -19,11 +19,11 @@ class CreateTodo extends React.Component {
         const {title} = this.state
 
         const newTodo = {
-            title, checked: false
+            title, checked: false, id: Date.now().toString()
         }
 
         this.props.createTodo(newTodo)
-        this.setState({ title: '' })
+        //this.setState({ title: '' })
     }
 
     changeInputHandler = event => {
