@@ -8,36 +8,43 @@ const TodosList = ({todos, filter, checkedTodo}) => {
         todo.checked = !todo.checked;
         checkedTodo(todo);
     }
-    return (
-        <List>
-            {todos.filter(todo => {
-                console.log(filter);
-                if(filter ==='all')
-                    return todo
-                else if (filter ==='checked')
-                    return todo.checked === true
-                else if (filter ==='unchecked')
-                    return todo.checked === false
-            }).map((todo) => {
-                const labelId = `checkbox-list-label-${todo.id}`;
+    if(todos && todos.length)
+        return (
+            <List className={'todos-list'}>
+                {todos.filter(todo => {
+                    console.log(filter);
+                    if(filter ==='all')
+                        return todo
+                    else if (filter ==='checked')
+                        return todo.checked === true
+                    else if (filter ==='unchecked')
+                        return todo.checked === false
+                }).map((todo) => {
+                    const labelId = `checkbox-list-label-${todo.id}`;
 
-                return (
-                    <ListItem key={todo.id} dense button onClick={handleToggle(todo)}>
-                        <ListItemIcon>
-                            <Checkbox
-                                edge="start"
-                                checked={todo.checked}
-                                tabIndex={-1}
-                                disableRipple
-                                inputProps={{ 'aria-labelledby': labelId }}
-                            />
-                        </ListItemIcon>
-                        <ListItemText id={labelId} primary={`${todo.title}`} />
-                    </ListItem>
-                );
-            })}
-        </List>
-    );
+                    return (
+                        <ListItem key={todo.id} dense button onClick={handleToggle(todo)}>
+                            <ListItemIcon>
+                                <Checkbox
+                                    edge="start"
+                                    checked={todo.checked}
+                                    tabIndex={-1}
+                                    disableRipple
+                                    inputProps={{ 'aria-labelledby': labelId }}
+                                />
+                            </ListItemIcon>
+                            <ListItemText id={labelId} primary={`${todo.title}`} />
+                        </ListItem>
+                    );
+                })}
+            </List>
+        );
+    else
+        return (
+            <div>
+                Нет записей
+            </div>
+        );
 }
 
 const mapDispatchToProps = {

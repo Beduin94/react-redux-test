@@ -23,7 +23,7 @@ class CreateTodo extends React.Component {
         }
 
         this.props.createTodo(newTodo)
-        //this.setState({ title: '' })
+        this.setState({ title: '' })
     }
 
     changeInputHandler = event => {
@@ -35,8 +35,11 @@ class CreateTodo extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.submitHandler}>
-                <TextField required value={this.state.todo} name="title" label="Название" inputProps={{maxLength: 10}} onChange={ this.changeInputHandler}/>
+            <form onSubmit={this.submitHandler} className={'submit-form'}>
+                <TextField required value={this.state.title}
+                           name="title" helperText="Максимум символов: 10"
+                           label="Название" inputProps={{maxLength: 10}}
+                           onChange={ this.changeInputHandler}/>
                 <Button size="small" className={'submit-button'}
                         variant="contained" color="primary" type="submit"> Создать
                 </Button>
