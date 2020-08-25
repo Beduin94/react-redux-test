@@ -1,7 +1,8 @@
 import * as React from "react";
 import connect from "react-redux/lib/connect/connect";
 
-const Counter = ({todos}) => {
+const Counter = props => {
+    const { todos } = props
 
     return (
         <div className={'counter'}>
@@ -13,7 +14,7 @@ const Counter = ({todos}) => {
 
 const mapStateToProps = state => {
     return {
-        todos: state.todos.todos
+        todos: state.todos.origin
     }
 }
 

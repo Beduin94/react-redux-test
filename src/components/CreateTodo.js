@@ -17,12 +17,13 @@ class CreateTodo extends React.Component {
         event.preventDefault()
 
         const {title} = this.state
+        const {createTodo} = this.props
 
         const newTodo = {
             title, checked: false, id: Date.now().toString()
         }
 
-        this.props.createTodo(newTodo)
+        createTodo(newTodo)
         this.setState({ title: '' })
     }
 

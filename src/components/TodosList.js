@@ -10,7 +10,7 @@ const TodosList = props => {
         checkedTodo
     } = props
 
-    const handleToggle = (todo) => () => {
+    const handleToggle = (todo) => {
         todo.checked = !todo.checked;
         checkedTodo(todo);
     }
@@ -18,7 +18,6 @@ const TodosList = props => {
         return (
             <List className={'todos-list'}>
                 {todos.filter(todo => {
-                    console.log(filter);
                     if(filter ==='all')
                         return todo
                     else if (filter ==='checked')
@@ -29,7 +28,7 @@ const TodosList = props => {
                     const labelId = `checkbox-list-label-${todo.id}`;
 
                     return (
-                        <ListItem key={todo.id} dense button onClick={handleToggle(todo)}>
+                        <ListItem key={todo.id} dense button onClick={() => handleToggle(todo)}>
                             <ListItemIcon>
                                 <Checkbox
                                     edge="start"
@@ -59,8 +58,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
     return {
-        todos: state.todos.todos,
-        filter: state.filter.filter
+        todos: state.todos.origin,
+        filter: state.filter.origin
     }
 }
 
