@@ -31,9 +31,7 @@ class Filter extends React.Component {
     handleChange = event => {
         event.persist()
         const { changeFilter } = this.props
-        this.setState(prev => ({...prev, ...{
-                [event.target.name]: event.target.value
-            }}), () => {
+        this.setState({[event.target.name]: event.target.value}, () => {
             changeFilter(this.state.filter);
         })
     }

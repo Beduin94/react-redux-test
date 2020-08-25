@@ -29,9 +29,7 @@ class CreateTodo extends React.Component {
 
     changeInputHandler = event => {
         event.persist()
-        this.setState(prev => ({...prev, ...{
-                [event.target.name]: event.target.value
-        }}))
+        this.setState({[event.target.name]: event.target.value})
     }
 
     render() {
