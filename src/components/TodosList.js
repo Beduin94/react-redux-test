@@ -3,7 +3,13 @@ import {List, ListItemText, Checkbox, ListItemIcon, ListItem} from "@material-ui
 import connect from "react-redux/lib/connect/connect";
 import {checkedTodo} from "../redux/actions";
 
-const TodosList = ({todos, filter, checkedTodo}) => {
+const TodosList = props => {
+    const {
+        todos,
+        filter,
+        checkedTodo
+    } = props
+
     const handleToggle = (todo) => () => {
         todo.checked = !todo.checked;
         checkedTodo(todo);
